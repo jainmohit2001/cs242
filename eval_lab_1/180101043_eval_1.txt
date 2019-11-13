@@ -1,0 +1,20 @@
+ mkdir -p evaluation_lab/{test1/{test12,test11},test2}
+ wget http://172.16.117.60:5002/evaluation_test_bench.tar.gz
+ tar --list -f evaluation_test_bench.tar.gztar xvzf 
+ tar xvzf evaluation_test_bench.tar.gz
+ ls -lShR evaluation_test_bench
+ rm evaluation_test_bench/*.txt evaluation_test_bench/*.doc
+ cp evaluation_test_bench/*.md evaluation_test_bench/md_files/
+ cat evaluation_test_bench/**example*.yaml
+ cat evaluation_test_bench/code/fish-shell-master/*.cpp evaluation_test_bench/code/fish-shell-master/*.h | wc -l
+ touch evaluation_test_bench/numeric_files/{A..Z}.txt
+ head -n 10005 evaluation_test_bench/fake_sales_records.csv | tail -n 6 | cat > evaluation_test_bench/sample_fake_sales_records.csv
+ du -s * | sort -n -r | head -n 5
+ chmod go-r evaluation_test_bench/invoice.yaml
+ ls -l evaluation_test_bench/executable_files | grep "^-..[^x]..[^x]..x"
+ sudo cat /etc/passwd | cut -d':' -f1 | sort
+ sudo useradd -d /home/evaluation_lab_1 -s /bin/bash evaluation_lab_1
+ sudo passwd evaluation_lab_1
+ sudo groupadd evaluation_group
+ sudo usermod -g ​evaluation_group evaluation_lab_1​
+ ssh 180101043@172.16.117.120

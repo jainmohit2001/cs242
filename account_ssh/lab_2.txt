@@ -1,0 +1,23 @@
+1> ##add sudo before every command
+	a> 	useradd -m -s /bin/bash cs242_1 cs242_2 test_account
+	b>	cat /etc/passwd
+	c> 	groupadd cs242
+	d> 	sudo passwd username
+	e>	usermod -aG sudo acct_name
+	f>	su - cs242_1
+	g>	whoami ##what user you are logged in
+	h>	pwd
+	i>	touch test_file.txt
+	j>	crtl + alt + t (opens new terminal) ## su - cs242_2
+	h>	sudo nano /home/cs242_1/test_file.txt
+	l>	yes
+	m>	yes
+
+
+2>	SSH
+	a> 	ip and password is required for logging in another pc
+	b> 	ssh username@ip
+	c>	users 
+
+3>	journalctl -u ssh -n 100 ##  sudo cat /var/log/auth.log
+
