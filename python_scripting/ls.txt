@@ -1,0 +1,15 @@
+total 1352
+drwxrwxr-x  3 mohit mohit    4096 Nov 12 17:13 .
+drwxrwxr-x 17 mohit mohit    4096 Nov 12 15:34 ..
+-rw-rw-r--  1 mohit mohit      66 Oct 13 14:10 command.py
+-rw-r--r--  1 mohit mohit      26 Nov 12 17:12 hello.txt
+drwxr-xr-x  2 mohit mohit    4096 Nov 12 16:26 .ipynb_checkpoints
+-rw-r--r--  1 mohit mohit       0 Nov 12 17:14 ls.txt
+-rw-r--r--  1 mohit mohit   66818 Nov 12 17:13 python-basics.ipynb
+-rw-rw-r--  1 mohit mohit  122654 Oct 16 14:22 Python Practice Exercise.pdf
+-rw-rw-r--  1 mohit mohit   14097 Nov 12 16:31 python_prog.ipynb
+-rw-rw-r--  1 mohit mohit    3717 Nov 12 16:23 python_prog.py
+-rw-rw-r--  1 mohit mohit  122482 Oct 15 13:45 Python Programming.pdf
+-rw-rw-r--  1 mohit mohit      33 Sep 28 10:19 script.py
+-rw-r--r--  1 mohit mohit    1788 Oct 23 16:13 Untitled.ipynb
+-rw-rw-r--  1 mohit mohit 1016714 Oct 11 10:21 words.txt

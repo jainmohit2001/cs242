@@ -1,0 +1,195 @@
+1> 	sudo apt-get install
+	sudo apt install build-essential
+
+2> 	wget	https://github.com/sap01/2019-cs-242-make-tut/raw/master/Quest.tar.gz
+	tar xvzf Quest.tar.gz
+
+3> 	touch Makefile
+4> 	objects = main.o single-player.o multi-player.o AI.o
+	use it by $(objects)
+	CC = gcc
+
+5> 	for using gcc- $(CC) --c $(CFLAGS) $(CPPFLAGS) $<
+6> 	$@ --> target file(get created on execution of command) (basically files wich are before ":")
+	$< --> source file (files on which target file depends) (basically files mentioned after ":") (the first Prerequisite)
+	$^ --> The names of all the prerequisites, with spaces between them.
+
+7>	%.o : %.c defs.h AI.h
+			$(CC) -c $< -o $@
+
+8> -include Makefile.deps
+	Makefile.deps:
+	$(CC) $(CFLAGS) -MM *.[c] > Makefile.deps
+
+9> 	include makefile2
+10>	$(subst from,to,text) --> substitues text in "from" to text in "to" in file text
+	$(patsubst pattern,replacement,text) -- .wildcard patterns use
+		e.g. --> $(patsubst %.c,%.o,x.c.c bar.c) == produces the value ‘x.c.o bar.o’
+	$(patsubst pattern,replacement,$(var)) == $(var:pattern=replacement)
+	$(patsubst %suffix,%replacement,$(var)) == $(var:suffix=replacement)
+	$(strip string) --> Removes leading and trailing whitespace from string and replaces each internal sequence of one or more whitespace characters with a single space.
+	$(findstring find,in) --> Searches "in" for an occurrence of "find". If it occurs, the value is "find"; otherwise, the value is empty.
+
+
+11> // A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed when you make an explicit request
+
+	.PHONY : clean  
+	clean :
+		-rm edit *.o
+12> .DEFAULT 
+  	%:: 
+  		touch $@
+
+13> make -f filename
+14> make -s
+15>	MAKESHELL = /bin/bash
+16>	mv *.h include
+	
+
+	INCLUDE_DIR = include
+	vpath %.h $(INCLUDE_DIR)
+	edit : $(objects)
+		$(CC) -o edit $(objects)
+
+	%.o: %.c defs.h AI.h
+		$(CC) -c $< -I$(INCLUDE_DIR)
+	.PHONY : clean
+	clean :
+		-rm edit *.o
+ 		
+
+-------------------------------------------------------
+							
+						GDB
+
+1>	gdb --> provide gdb prompt
+2>	for compilation of .c files --> gcc -std=c99 -g -o test test.c
+		## for .cpp files --> g++ -g -o test test.c
+		g flag means you can see the proper names of variables and functions in your stack frames, get line numbers and see the source as you step around in the executable.
+
+		-std=C99 flag implies use standard C99 to compile the code.
+
+		-o flag writes the build output to an output file.
+
+3> to run --> gdb ./test(name of .o file)
+4>	run or r 	–> executes the program from start to end.
+	break or b 	–> sets breakpoint on a particular line.
+	disable 	–> disable a breakpoint.
+	enable 		–> enable a disabled breakpoint.
+	next or n 	–> executes next line of code, but don’t dive into functions.
+	step or s	–> go to next instruction, diving into the function.
+	list or l 	–> displays the code.
+	print or p 	–> used to display the stored value.
+	quit or q 	–> exits out of gdb.
+	clear 		–> to clear all breakpoints.
+	continue 	–> continue normal execution.
+
+5> to display the code type "l" in gdb prompt 
+6> breakpoint-->
+		b line_number
+		info b
+		disable b
+		enable b
+7> to change the value of a varibale-->
+		set variable=value
+
+## if variable is not yet initialised then printing it will give us random number
+
+	some basic commands->
+		b main 		- Puts a breakpoint at the beginning of the program
+		b 			- Puts a breakpoint at the current line
+		b N 		- Puts a breakpoint at line N
+		b +N 		- Puts a breakpoint N lines down from the current line
+		b fn 		- Puts a breakpoint at the beginning of function "fn"
+		d N 		- Deletes breakpoint number N
+		info break 	- list breakpoints
+		r 			- Runs the program until a breakpoint or error
+		c 			- Continues running the program until the next breakpoint or error
+		f 			- Runs until the current function is finished
+		s 			- Runs the next line of the program (##steps into function)
+		s N 		- Runs the next N lines of the program
+		n 			- Like s, but it does not step into functions
+		u N 		- Runs until you get N lines in front of the current line
+		p var 		- Prints the current value of the variable "var"
+		bt 			- Prints a stack trace
+		u 			- Goes up a level in the stack
+		d 			- Goes down a level in the stack
+		q 			- Quits gdb
+
+	Getting Started: Starting and Stopping
+		gcc -g myprogram.c  --> compile and create a.out file to use in gdb
+		gdb a.out           --> Opens GDB with file a.out, but does not run the program.
+		three ways to run a.out--> 
+			r
+			r arg1 arg2 (passing argument)
+			r < file1	(feeding a file)
+		help
+		h breakpoints       --> list help topics
+		q 				    --> Quit GDB
+
+	Stepping through Code
+		
+		l
+		l 50
+		l myfunction
+			Lists 10 lines of source code for current line (l), a specific line (l 50), or for a function (l myfunction). -->
+
+		next
+			Runs the program until next line, then pauses. If the current line is a function, it executes the entire function, then pauses. next is good for walking through your code quickly.
+		step
+			Runs the next instruction, not line. If the current instruction is setting a variable, it is the same as next. If it’s a function, it will jump into the function, execute the first statement, then pause. step is good for diving into the details of your code.
+		finish
+			Finishes executing the current function, then pause (also called step out). Useful if you accidentally stepped into a function.
+
+	Breakpoints or Watchpoints
+
+		break 45
+		break myfunction
+			Sets a breakpoint at line 45, or at myfunction. The program will pause when it reaches the breakpoint.
+
+		watch x == 3
+			Sets a watchpoint, which pauses the program when a condition changes (when x == 3 changes). Watchpoints are great for certain inputs (myPtr != NULL) without having to break on every function call.
+
+		continue
+			Resumes execution after being paused by a breakpoint/watchpoint. The program will continue until it hits the next breakpoint/watchpoint.
+
+		delete N
+			Deletes breakpoint N (breakpoints are numbered when created).
+
+
+	Setting Variables
+		print x
+			Prints current value of variable x. Being able to use the original variable names is why the (-g) flag is needed; programs compiled regularly have this information removed.
+
+		set x = 3
+		set x = y
+			Sets x to a set value (3) or to another variable (y)
+
+		call myfunction()
+		call myotherfunction(x)
+		call strlen(mystring)
+			Calls user-defined or system functions. This is extremely useful, but beware of calling buggy functions.
+
+		display x
+			Constantly displays the value of variable x, which is shown after every step or pause. Useful if you are constantly checking for a certain value.
+
+		undisplay x
+			Removes the constant display of a variable displayed by display command.
+
+
+
+	Backtrace and Changing Frames
+		bt
+			Backtraces or prints the current function stack to show where you are in the current program. If main calls function a(), which calls b(), which calls c(), the backtrace is
+
+				c <= current location 
+				b 
+				a 
+				main 
+
+		up
+		down
+			Move to the next frame up or down in the function stack. If you are in c, you can move to b or a to examine local variables.
+
+		return
+			Returns from current function.
