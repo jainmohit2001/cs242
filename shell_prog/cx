@@ -1,0 +1,36 @@
+#! /bin/bash  #shebang
+
+:<<'END'
+Name : Mohit Jain
+Roll No. : 180101043
+Semester : 3rd Sem
+bash
+END
+	arr1=()
+	arr2=()
+	for (( i = 0; i < 3; i++ )); do
+		read -a arr
+		for (( j = 0; j < 3; j++ )); do
+			index=$((i*3 + j))
+			arr1[${index}]=${arr[$j]}
+		done
+	done
+
+	for (( i = 0; i < 3; i++ )); do
+		read -a arr
+		for (( j = 0; j < 3; j++ )); do
+			index=$((i*3 + j))
+			arr2[${index}]=${arr[$j]}
+		done
+	done
+
+	for (( i = 0; i < 3; i++ )); do
+		for (( j = 0; j < 3; j++ )); do
+			index=$((i*3 + j))
+			temp=`expr ${arr1[$index]} + ${arr2[${index}]}`
+			echo -n $temp " "
+		done
+		echo 
+	done
+
+#'End of Program'

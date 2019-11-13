@@ -1,0 +1,233 @@
+1>	touch exec_mode.sh
+		chmod +x $1
+2>	echo 'The date today is' `date`
+
+3>	dir=`pwd`
+	pwd 
+	cd /
+	pwd
+	cd $dir
+	pwd		
+
+4>	for i in *; do    echo $i; done
+
+5>	read -p 'Username: ' User
+	read -s -p 'Password: ' Pass
+	echo $User $Pass  
+
+6>	echo $#
+
+7>	:<<'END'
+	Name : Mohit Jain
+	Roll No. : 180101043
+	Semester : 3rd Sem
+	bash
+	END
+	read -p 'This is the first shell program. Please enter the username : ' username
+	echo 'Username:: ' $username
+
+	#'End of Program'
+
+8>	read num
+	if [ $num -eq 0 ]
+	then
+		echo 'Equal to zero'
+	elif [ $num -gt 0 ]
+	then
+		echo 'Greater than zero'
+	else
+		echo 'Less than zero'
+	fi		
+
+9>	read -p 'Enter file name : ' fn
+	if [ -e $fn ]
+	then
+		echo 'file exists'
+		if [ -r $fn ]
+		then
+			echo 'File has read permission'
+		else
+			echo 'File does not have read permission' 	
+		fi
+
+		if [ -w $fn ]
+		then
+			echo 'File has write permission'
+		else
+			echo 'File does not have write permission' 		
+		fi
+
+		if [ -x $fn ]
+		then
+			echo 'File has execute permission'
+		else
+			echo 'File does not have execute permission' 	
+		fi
+	else
+		echo 'File does not exist'
+	fi
+
+10>	read -p 'Enter the total number: ' n 
+	echo 'Enter numbers :'
+	i=0
+	sum=0
+	while [ $i -lt $n ]
+	do
+		read a[$i]
+		sum=`expr $sum + ${a[$i]}`
+		i=`expr $i + 1`
+
+	done
+
+
+	avg=`echo "$sum / $n" | bc -l`
+	printf "Average: "'%0.3f' "$avg"
+	echo
+
+11>	ans=`echo 20.5^5 | bc -l`
+	printf '%0.4f' "$ans"
+	echo
+
+12>	read -p 'Enter the character : ' s
+	len=`expr length "$s"`
+	if [ $len -eq 1 ]
+	then 
+		case ${s:0:1} in
+			[[:lower:]] )
+				echo 'lowercase';;
+			[[:upper:]] )
+				echo 'upppercase';;
+			[0-9]* )
+				echo 'number';;
+			* )
+				echo 'Special character';;
+		esac
+	else
+		echo 'wrong input'
+	fi
+	
+
+13>	echo 'Enter 2 numbers'
+	read a
+	read b
+	read -p 'enter sign : ' sign
+
+	case "$sign" in
+			"+" )
+				temp=`echo "$a + $b" | bc -l`
+				printf '%0.3f' "$temp"
+				echo;;
+			"-" )
+				temp=`echo "$a - $b" | bc -l`
+				printf '%0.3f' "$temp"
+				echo;;
+			"*" )
+				temp=`echo "$a * $b" | bc -l`
+				printf '%0.3f' "$temp"
+				echo;;
+			"/" )
+				temp=`echo "$a / $b" | bc -l`
+				printf '%0.3f' "$temp"
+				echo;;
+	esac
+
+14>	read a
+	read b
+	temp1=$a
+	temp2=$b
+	while [ $b -gt 0 ]
+	do
+		c=$b
+		b=`expr $a % $c`
+		a=$c
+	done
+	echo 'gcd of' $temp1 'and' $temp2 'is' $a
+
+15>	while [ 1 ]
+	do
+		read s;
+		len=`expr length "$s"`
+		if [[ $len -eq 3 ]] 
+			then
+			if [[ $s == "Bye" ]]
+				then break 
+			fi
+		fi
+		echo $s
+	done
+
+16>	for (( i = 0; i < 2; i++ )); do
+		ls 
+		pwd
+		date
+	done	
+
+17>	read -p 'Enter the String :' s
+	if [[ "$(echo "$s" | rev )" == "$s" ]]; then
+		echo "Yes"
+		len=`expr length "$s"`
+		echo "Length of string : " $len
+		#statements
+	fi
+
+18>	read -p 'Enter two filenames String :' f1 f2
+
+	if [[ -e $f1 && -e $f2 ]]; then
+		echo "Yes they both exist"
+	else
+		echo "Both of them don't exist"
+	fi
+
+
+19>	select drink in tea coffee water juice apple all none 
+	do
+		case $drink in
+			tea | coffee | water | all )
+				echo "Go to Canteen"
+				;;
+			juice | apple)
+				echo "Available at home"
+			;;
+			none)
+				break
+			;;
+			* )
+				echo "invalid selection"
+			;;	
+		esac
+	done	
+
+20>	func(){
+    	echo "lines: " $(wc -l < $f)
+    	echo "words: " $(wc -w < $f)
+    	echo "characters: " $(wc -c < $f)
+	}
+	read f
+	func $f
+
+21>	arr1=()
+	arr2=()
+	for (( i = 0; i < 3; i++ )); do
+		read -a arr
+		for (( j = 0; j < 3; j++ )); do
+			index=$((i*3 + j))
+			arr1[${index}]=${arr[$j]}
+		done
+	done
+
+	for (( i = 0; i < 3; i++ )); do
+		read -a arr
+		for (( j = 0; j < 3; j++ )); do
+			index=$((i*3 + j))
+			arr2[${index}]=${arr[$j]}
+		done
+	done
+
+	for (( i = 0; i < 3; i++ )); do
+		for (( j = 0; j < 3; j++ )); do
+			index=$((i*3 + j))
+			temp=`expr ${arr1[$index]} + ${arr2[${index}]}`
+			echo -n $temp " "
+		done
+		echo 
+	done		
