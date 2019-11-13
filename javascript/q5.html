@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS</title>
+	<script>
+		var arr = ['F','O','X'];
+		var guess = ['_','_','_'];
+		var correct_guess =0;
+
+		function guessLetter(c){
+			
+			var i=0;
+			var x = false;
+			var f = false;
+			for(i=0;i<arr.length;i++){
+				if(arr[i] == c){
+					f = true;
+					if(guess[i] == '_'){
+						guess[i] = c;
+						correct_guess++;
+						x=true;
+						
+					}
+					
+				}
+			}
+			console.log(guess.join(""));
+			if(x==false && f == true){
+				return -1;
+			}
+			return x;
+		}
+		while(1){
+			var c = prompt('Guess a letter');
+			var val = guessLetter(c);
+			if(correct_guess == arr.length){
+				alert('congratulations on winning the game');
+				break;
+			}
+			else{
+				if(val == true){
+					alert('You guessed the right letter');
+				}
+				
+			}
+		}
+
+
+	</script>
+</head>
+<body></body>
+</html>

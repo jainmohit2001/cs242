@@ -1,0 +1,17 @@
+			------ AWK SOLUTIONS ---
+
+1>	awk 'BEGIN{cnt=0} {cnt++} END{print cnt}'
+2>	awk '{if($2 == 515042969){arr[$3]++}} END{ for(b in arr) print b}' (if you want to print what are all disntict job id of given userid)
+3>	awk 'BEGIN{cnt=0} {if($2 == 515042969){cnt += $8 + $9 +$10}} END{print cnt}'
+4>  awk '{if($11 == 1){print $0}}' 
+5>	awk 'BEGIN{cnt=0} {if($8 >= 0.001 && $8 <= 0.009){cnt++}} END{print cnt}'
+6> 	awk 'BEGIN{cnt=0} {if(length($0) > cnt){cnt = length($0)}} END{print cnt}'
+7>	awk '{if(NR>=100 && NR<=200){ print }}' 
+8>	awk '{ {if($7<=0){ print >> "sample0.txt"} else{ print >> "sample1.txt"}} }'
+9>	awk 'BEGIN{i=NR/100; x="sample1"} {i = int( NR/100) "";if(int((NR-1)/100) != int((NR-2)/100)){ x = substr(x,1,6) i;} print >> x".txt"}'
+10>	awk 'BEGIN{cnt=0} {cnt++; print cnt,$0}'
+11>	awk '{for (i=NF;i>0;i--){if (i!=1) printf $i" "; else printf $i};printf "\n"}'
+12>	awk 'BEGIN{cnt=0; id=0} {if(length($0) > cnt){cnt = length($0); id = $2}} END{print id}'
+13>	same as 11
+14>	awk '{arr[$1]++} END{for(days in arr){print days, arr[days]}}'
+15>	awk '{arr[$1] = $0} END{for(num in arr){print arr[num]}}'

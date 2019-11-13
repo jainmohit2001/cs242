@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS</title>
+	<script>
+
+		var inp = prompt('Enter your input');
+		if(isNaN(inp)){
+			alert('You entered a string');
+			if(inp.length == 0){
+				alert('Your input string is empty');
+			}
+			var arr  = inp.split(" ");
+			console.log(arr);
+		}
+		else{
+			alert('Your input in not a string');
+		}
+		var email = prompt('Enter your Email Address');
+		function check_email(email){
+			var reg = /^([A-Za-z0-9_\.\-])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z])+$/;
+			if(reg.test(email) == false){
+				alert('Invalid email address');
+				return false;
+			}
+			else{
+				alert('Your email id is valid. :)')
+				return true;
+			}
+			
+		}
+		check_email(email);
+	</script>
+</head>
+<body>
+</body>
+</html>

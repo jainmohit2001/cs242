@@ -1,0 +1,51 @@
+1>	crtl + alt + t
+2>	pwd
+3>	mkdir c242
+4>	mkdir cs242/lab_1
+5>	rm cs242 (won't work... it is not empty) // use <-- rm -r cs242 --> (deletes recursively)
+6>	mkdir cs242 cs242/lab_1
+7>	cd cs242/lab_1
+8> 	wget link
+9>	tar xvzf file_name.tar.gz
+10>	tar -tvf file_name.tar.gz ## tar -xvzf file_name.tar.gz file_name1.md(proper directory name)
+11>	tree
+12>	ls -l  
+13>	ls -R  ## find . -print
+14>	ls -lh (alphabetical order)
+15> ls -lSr (increasing size)
+16>	ls -lt (last modified first)
+17> clear
+18>	cd /tmp/ 
+19>	touch test_file.txt
+20>	echo "Mohit Jain"
+21>	echo "Mohit Jain" > test_file.txt
+22>	cat test_file.txt
+23>	echo "180101043" >> test_file.txt
+25> ls -l test_file.txt
+26>	chmod 400 test_file.txt
+27>	echo "CSE" >> test_file.txt (won't work, read only file)
+28>	nope
+29>	chmod u+w test_file.txt
+30>	
+31>	yes
+32>	reboot ## systemctl reboot
+33>	cd /tmp/
+34>	ls -lh
+35>	Nope ## cd /home/mohit/cs242/lab_1/practice_material
+36>	find -name *.txt
+37>	wc -func large_files/1000000\ Sales\ Records.csv 
+		wc -l : Prints the number of lines in a file.
+		wc -w : prints the number of words in a file.
+		wc -c : Displays the count of bytes in a file.
+		wc -m : prints the count of characters from a file.
+		wc -L : prints only the length of the longest line in a file.
+38>	cat nested_directory/level_1/empty_file_at_level_1.txt
+39>	cat $(find . -name *.txt)
+40>	head -n number ## tail -n number
+41>	head -n 375 file_name.csv | tail -n 21
+42>	head -n 40 file_name.csv | cut -d',' -f2
+43> head -n 40 file_name.csv | cut -d',' -f2 | sort
+44>	head -n 40 file_name.csv | cut -d',' -f2 | sort | uniq
+45>	top ## ps
+47>	ps -aux | grep "name of browser"
+48>	kill id

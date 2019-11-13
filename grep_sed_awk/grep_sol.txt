@@ -1,0 +1,4 @@
+1>	ls -l | grep 'rwxrwxrw.'
+2>	ls -l | grep -c 'Aug'
+3>	ls -lh | grep '[MG]'
+###4>	ls -lh | grep -v 'Sep'

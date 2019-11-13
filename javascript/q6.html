@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS</title>
+	<script>
+		var arr = ['F','O','X'];
+		var guess = ['_','_','_'];
+		var guessed = [];
+		for(var k=0;k<123;k++){
+			guessed.push(0);
+		}
+		var correct_guess =0;
+		var wrong_guess = 0;
+		function guessLetter(c){
+			
+			var i=0;
+			var x = false;
+			var f = false;
+			for(i=0;i<arr.length;i++){
+				if(arr[i] == c){
+					f = true;
+					if(guess[i] == '_'){
+						guess[i] = c;
+						correct_guess++;
+						x=true;
+						guessed[c.charCodeAt(0)] = 1;
+					}
+					
+				}
+			}
+			
+			if(f==false && guessed[c.charCodeAt(0)] == 0){
+				wrong_guess++;
+				console.log(wrong_guess);
+				guessed[c.charCodeAt(0)] = 1;
+			}
+			console.log(guess.join(""));
+			if(guessed[c.charCodeAt(0)]==1){
+				return -1;
+			}
+			return x;
+		}
+		while(1){
+			var c = prompt('Guess a letter');
+			var val = guessLetter(c);
+			if(wrong_guess >= 6){
+				alert('You Lost the game');
+				break;
+			}
+			else if(correct_guess == arr.length){
+				alert('congratulations on winning the game');
+				break;
+			}
+			else{
+				if(val == true){
+					alert('You guessed the right letter');
+				}
+				else{
+
+				 	if(val == -1){
+						continue;
+					}
+					else{
+						alert('You guessed the wrong letter');
+					}
+				}
+			}
+		}
+
+
+	</script>
+</head>
+<body></body>
+</html>
